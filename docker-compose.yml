@@ -1,0 +1,52 @@
+version: "3.9"
+
+services:
+  backend:
+    build:
+      context: ./backend
+    ports:
+     - 3000:3000
+    container_name: backend
+    restart: on-failure
+    links:
+      - db
+    volumes:
+      - ./backend:/usr/src/app
+    depends_on:
+      - db
+    networks:
+      - app-tier
+    tty: true
+
+  db:
+    image: mysql
+    container_name: mysql
+    ports:
+      - 3307:3306
+    volumes:
+      - mysql:/var/lib/mysql
+    env_file:
+      - .env
+    networks:
+      - app-tier
+    tty: true
+
+  nginx:
+    build: ./nginx
+    ports:
+      - 80:80
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+    container_name: nginx
+    depends_on:
+      - backend
+    networks:
+      - app-tier
+    tty: true
+
+networks:
+  app-tier:
+    driver: bridge
+
+volumes:
+  mysql: null
