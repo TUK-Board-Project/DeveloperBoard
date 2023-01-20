@@ -1,3 +1,4 @@
+require('dotenv').config();
 const Koa = require('koa');
 const Router = require('@koa/router');
 const app = new Koa();
@@ -5,6 +6,9 @@ const bodyParser = require('koa-bodyparser');
 const router = new Router();
 
 const port = 3000;
+
+
+
 
 app.use(bodyParser({formLimit: '10mb'}));
 
