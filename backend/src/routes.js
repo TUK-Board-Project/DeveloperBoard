@@ -1,9 +1,11 @@
 const Router = require('@koa/router');
 const router = new Router();
-const postController=require('./api/post/controller');
+const postsController=require('./api/posts/controller');
 
 
-router.post('/api/posts',postController.save) 
+router.post('/api/posts',postsController.save) //posts에 있는 Controller
+router.get('/api/posts',postsController.getList)
+router.get('/api/posts/:id',postsController.getOne)
 
 
 
