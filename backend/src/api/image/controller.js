@@ -3,7 +3,8 @@ const fs = require('fs')
 
 exports.upload = async (ctx, next) => {
     let file = ctx.request.file;
-    let { affectedRows, insertId } = await create(file.originalname, file.path);
+    let { posts_id } = ctx.request.body;
+    let { affectedRows, insertId } = await create(file.originalname, file.path, posts_id);
 
     if (affectedRows > 0) {
         ctx.body = {
@@ -25,7 +26,7 @@ exports.download = async (ctx, next) => {
         ctx.body = { result: "fail" }
         return;
     }
-    ctx.response.set("content-disposition", `attachment; filename=${item.file_name}`);
+    ctx.response.set("content-disposition", `attachment; filename=${item.original_name}`);
     ctx.statusCode = 200;
     ctx.body = fs.createReadStream(item.file_path);
 }
