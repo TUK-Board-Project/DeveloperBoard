@@ -1,4 +1,4 @@
-const { pool } = require('../../data');
+const { pool } = require('../../data/database');
 
 exports.create = async (name, path) => {
     const query = `INSERT INTO files(file_name, file_path) VALUES (?, ?, ?)`;

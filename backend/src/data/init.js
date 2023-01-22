@@ -1,4 +1,5 @@
 const {pool} = require("./database");
+
 const createPostsTable = `
 create table if not exists posts(
     id int not null auto_increment primary key,
