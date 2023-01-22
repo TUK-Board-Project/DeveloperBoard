@@ -17,8 +17,8 @@ router.use(verify);
 router.get('/api/user/:id', userController.info);
 router.post('/api/posts',postController.save) ;
 
-router.post('/api/photos', imageController.upload);
-router.get('/api/photos/:id', imageController.download);
-router.del('/api/photos/:id', imageController.deleteById);
+router.post('/api/images', imageController.upload);
+router.get('/api/images/:id', imageController.download);
+router.del('/api/images/:id', imageController.deleteById);
 
 module.exports = router;
