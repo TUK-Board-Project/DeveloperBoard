@@ -21,8 +21,7 @@ exports.register = async (ctx, next) => {
 
     let { affectedRows } = await register(email, result.toString('base64'), name);
     if (affectedRows > 0) {
-        let token = await generateToken( {name});
-        ctx.body = token;
+        ctx.body = {result: "success"};
     } else {
         ctx.body = {result: "fail"};
     }
