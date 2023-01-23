@@ -25,8 +25,13 @@ router.post('/api/user/login', userController.login);
 router.get('/api/user/:id', userController.info);
 
 router.post('/api/posts',postsController.save);
-router.post('/api/posts',postsController.getList);
-router.post('/api/posts/:id',postsController.getOne);
+router.get('/api/posts',postsController.getList);//글 목록조회
+router.get('/api/posts/:id',postsController.getOne);//글 상세조회
+
+router.put('/api/posts/:id',postsController.update);//수정
+router.del('/api/posts/:id',postsController.delete);//삭제
+
+
 
 
 router.post('/api/images', upload.single('file'), imageController.upload);
