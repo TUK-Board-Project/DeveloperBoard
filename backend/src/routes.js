@@ -11,18 +11,21 @@ const postsController = require('./api/posts/controller');
 const userController = require('./api/user/controller');
 const imageController = require('./api/image/controller');
 const commentController = require('./api/comment/controller');
+const myPageController = require('./api/mypage/controller');
+
+
 
 // 테스트용 API
 router.get('/api', (ctx, next) => {
     ctx.body = 'hello world';
 });
 
-router.post('/api/user/register', userController.register);
-router.post('/api/user/login', userController.login);
+router.post('/api/users/register', userController.register);
+router.post('/api/users/login', userController.login);
 
 router.use(verify);
 
-router.get('/api/user/:id', userController.info);
+router.get('/api/users/:id', userController.info);
 
 router.post('/api/posts',postsController.save);
 router.get('/api/posts',postsController.getList);//글 목록조회
@@ -42,4 +45,10 @@ router.post('/api/comments', commentController.saveComment);
 router.get('/api/comments/:id', commentController.findById);
 router.del('/api/comments/:id', commentController.deleteById);
 
+router.get('/api/users/:id/posts',myPageController.getUserPostsListByPosts);
+router.get('/api/users/:id/comments',myPageController.getUserPostsListByComments);
+
+
 module.exports = router;
+
+
