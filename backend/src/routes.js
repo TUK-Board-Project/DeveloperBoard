@@ -20,7 +20,7 @@ router.get('/api', (ctx, next) => {
 router.post('/api/user/register', userController.register);
 router.post('/api/user/login', userController.login);
 
-// router.use(verify);
+router.use(verify);
 
 router.get('/api/user/:id', userController.info);
 
