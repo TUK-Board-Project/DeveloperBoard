@@ -1,4 +1,5 @@
-const{createPosts,getAllPosts,getById}=require('./query');
+const{createPosts,getAllPosts,getById,updatePosts,deletePosts}=require('./query');
+const{getAllByPostsId}=require('../comment/query');
 
 exports.save=async(ctx,next)=>{
     let body=ctx.request.body;
@@ -22,8 +23,11 @@ exports.getList=async(ctx,next)=>{
 exports.getOne=async(ctx,next)=>{
     let id=ctx.params.id
     let result=await getById(id);
+    let comments=await getAllByPostsId(id);
     if(result.length>0){
-        ctx.body=result[0]
+        let body=result[0]
+        body.comment=comments
+        ctx.body=body
     }else{
         ctx.body={
             result:"no contents"
@@ -33,4 +37,33 @@ exports.getOne=async(ctx,next)=>{
 }
 
 
+exports.update=async(ctx,next)=>{
+    let id=ctx.params.id
+    let body=ctx.request.body 
+    let {affectedRows}=await updatePosts(id,body.title,body.contents);
+    if(affectedRows>0){
+        ctx.body= {
+        result:"success"
+       }
+    }else{
+        ctx.body={
+            result:"fail"
+        }
+    }
+}
+
+exports.delete=async(ctx,next)=>{
+    let id=ctx.params.id
+    let {affectedRows}=await deletePosts(id);
+    if(affectedRows>0){
+        ctx.body= {
+        result:"success"
+       }
+    }else{
+        ctx.body={
+            result:"fail"
+        }
+    }
+    
+}
 

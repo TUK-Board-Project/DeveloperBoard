@@ -15,3 +15,8 @@ exports.deleteComment = async (id) => {
     const query = `DELETE FROM comment WHERE id = ?`;
     return await pool(query, [id]);
 }
+
+exports.getAllByPostsId=async(id)=>{
+    const query=`SELECT * FROM comment WHERE posts_id=?`;
+    return await pool(query,[id]);
+}
