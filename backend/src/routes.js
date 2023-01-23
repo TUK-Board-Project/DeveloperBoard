@@ -7,7 +7,7 @@ const upload = multer({
     dest: path.resolve(__dirname, '../', 'storage')
 });
 
-const postController = require('./api/post/controller');
+const postsController = require('./api/posts/controller');
 const userController = require('./api/user/controller');
 const imageController = require('./api/image/controller');
 const commentController = require('./api/comment/controller');
@@ -24,7 +24,10 @@ router.post('/api/user/login', userController.login);
 
 router.get('/api/user/:id', userController.info);
 
-router.post('/api/posts',postController.save) ;
+router.post('/api/posts',postsController.save);
+router.post('/api/posts',postsController.getList);
+router.post('/api/posts/:id',postsController.getOne);
+
 
 router.post('/api/images', upload.single('file'), imageController.upload);
 router.get('/api/images/:id', imageController.download);
