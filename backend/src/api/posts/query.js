@@ -11,7 +11,7 @@ exports.getAllPosts=async(board_type)=>{
 }
 
 exports.getById=async(id)=>{
-    const query=`SELECT * FROM posts where id=?`;
+    const query=`SELECT p.title, p.contents, p.id, p.user_id, u.email FROM posts p and user u where id=? and user.id = p.user_id`;
     return await pool(query,[id]);
 }
 
@@ -22,7 +22,6 @@ exports.updatePosts=async(id,title,contents)=>{
 }
 
 //삭제
-
 exports.deletePosts=async(id)=>{
     const query=`DELETE FROM posts where id=?`
     return await pool(query,[id]);
