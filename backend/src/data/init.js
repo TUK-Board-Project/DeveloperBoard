@@ -13,7 +13,7 @@ create table if not exists posts(
 const createUserTable = `
 create table if not exists user(
     id int not null auto_increment primary key,
-    email VARCHAR(255) not null,
+    email VARCHAR(255) unique not null,
     password VARCHAR(255) not null,
     name VARCHAR(255) not null,
     created_at timestamp not null default current_timestamp
