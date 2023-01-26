@@ -11,7 +11,7 @@ exports.getAllPosts=async(board_type)=>{
 }
 
 exports.getById=async(id)=>{
-    const query=`SELECT p.title, p.contents, p.id, p.user_id, u.email FROM posts p and user u where id=? and user.id = p.user_id`;
+    const query=`SELECT p.title, p.contents, p.id, p.user_id, u.email FROM posts p , user u where p.id=? and u.id = p.user_id`;
     return await pool(query,[id]);
 }
 
