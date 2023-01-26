@@ -6,7 +6,7 @@ exports.createComment = async (user_id, posts_id, contents) => {
 }
 
 exports.getComment = async (id) => {
-    const query = `SELECT c.id, c.contents, c.posts_id, c.user_id, u.email FROM comment c, user u WHERE c.id = ? and c.user_id = u.id`;
+    const query = `SELECT * FROM comment WHERE id = ?`;
     let result = await pool(query, [id]);
     return (result.lenth < 0) ? null : result[0]
 }

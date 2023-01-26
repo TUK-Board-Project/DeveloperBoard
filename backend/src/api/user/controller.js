@@ -35,7 +35,7 @@ exports.login = async (ctx, next) => {
     if (item == null) {
         ctx.body = { result: "fail" };
     } else {
-        let token = await generateToken({name: item.name});
+        let token = await generateToken({name: item.name, id : item.id});
         ctx.body = token;
     }
 }
