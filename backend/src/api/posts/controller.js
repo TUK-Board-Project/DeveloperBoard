@@ -3,14 +3,15 @@ const{getAllByPostsId}=require('../comment/query');
 
 exports.save=async(ctx,next)=>{
     let body=ctx.request.body;
-    let {affectedRows,insertId}=await createPosts(body.user_id,body.title,body.contents);
+    let {affectedRows,insertId}=await createPosts(body.user_id,body.title,body.contents, body.board_type);
     ctx.body={
         id:insertId
     }
 }
 
 exports.getList=async(ctx,next)=>{
-    let result=await getAllPosts();
+    let board_type = ctx.request.query.board_type;
+    let result=await getAllPosts(board_type);
     if (result.length>0) {
         ctx.body=result
     }else{

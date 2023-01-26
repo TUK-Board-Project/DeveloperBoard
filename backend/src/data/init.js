@@ -6,6 +6,7 @@ create table if not exists posts(
     user_id int not null,
     title varchar(255) not null,
     contents varchar(255) not null,
+    board_type varchar(50) not null,
     created_at timestamp not null default current_timestamp
 );`;
 

@@ -1,13 +1,13 @@
 const{pool}=require('../../data/database');              
 
-exports.createPosts=async(user_id,title,contents)=>{
-    const query=`INSERT INTO posts(user_id,title,contents) VALUES(?,?,?)`; 
-    return await pool(query,[user_id,title,contents]);
+exports.createPosts=async(user_id,title,contents,board_type)=>{
+    const query=`INSERT INTO posts(user_id,title,contents,board_type) VALUES(?,?,?,?)`;
+    return await pool(query,[user_id,title,contents,board_type]);
 }
 
-exports.getAllPosts=async()=>{
-    const query=`SELECT id, title, user_id FROM posts`;
-    return await pool(query,[]);
+exports.getAllPosts=async(board_type)=>{
+    const query=`SELECT id, title, user_id FROM posts WHERE board_type = ?`;
+    return await pool(query,[board_type]);
 }
 
 exports.getById=async(id)=>{
