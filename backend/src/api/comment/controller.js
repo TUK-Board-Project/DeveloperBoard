@@ -32,7 +32,7 @@ exports.deleteById = async (ctx, next) => {
 
     let item = await getComment(id);
 
-    if(user.id !== item.user_id) {
+    if(user.name !== item.user_id) {
         ctx.status = 400;
         ctx.body = {result: "fail", message: '타인의 글은 삭제할 수 없습니다.'};
         return;

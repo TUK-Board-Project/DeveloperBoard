@@ -47,7 +47,7 @@ exports.update=async(ctx,next)=>{
     let user=ctx.request.user;
     let item=await getById(id);
 
-    if(user.id !== item.user_id) {
+    if(user.name !== item.user_id) {
         ctx.status = 400;
         ctx.body = {result: "fail", message: '타인의 글은 수정할 수 없습니다.'};
         return;
@@ -71,8 +71,8 @@ exports.delete=async(ctx,next)=>{
     
     let user=ctx.request.user;
     let item=await getById(id);
-    
-    if(user.id !== item.user_id) {
+
+    if(user.name !== item.user_id) {
         ctx.status = 400;
         ctx.body = {result: "fail", message: '타인의 글은 삭제할 수 없습니다.'};
         return;
