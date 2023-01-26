@@ -2,6 +2,7 @@ const Router = require('@koa/router');
 const multer = require('@koa/multer');
 const router = new Router();
 const { verify } = require('./middleware/auth')
+const { logger } = require('../src/middleware/logging')
 const path = require("path");
 const upload = multer({
     dest: path.resolve(__dirname, '../', 'storage')
@@ -13,12 +14,7 @@ const imageController = require('./api/image/controller');
 const commentController = require('./api/comment/controller');
 const myPageController = require('./api/mypage/controller');
 
-
-
-// 테스트용 API
-router.get('/api', (ctx, next) => {
-    ctx.body = 'hello world';
-});
+router.use(logger);
 
 router.post('/api/users/register', userController.register);
 router.post('/api/users/login', userController.login);

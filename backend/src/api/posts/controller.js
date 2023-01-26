@@ -11,7 +11,7 @@ exports.save=async(ctx,next)=>{
 }
 
 exports.getList=async(ctx,next)=>{
-    let board_type = ctx.request.query.board_type;
+    let {board_type} = ctx.request.query;
     let result=await getAllPosts(board_type);
     if (result.length>0) {
         ctx.body=result

@@ -6,7 +6,7 @@ exports.createPosts=async(user_id,title,contents,board_type)=>{
 }
 
 exports.getAllPosts=async(board_type)=>{
-    const query=`SELECT id, title, user_id FROM posts WHERE board_type = ?`;
+    const query=`SELECT id, user_id, contents, title, created_at FROM posts WHERE board_type = ?`;
     return await pool(query,[board_type]);
 }
 
