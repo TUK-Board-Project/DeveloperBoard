@@ -28,6 +28,15 @@ exports.findById = async (ctx, next) => {
 
 exports.deleteById = async (ctx, next) => {
     let id = ctx.params.id;
+    let user = ctx.request.user;
+
+    let item = await getComment(id);
+
+    if(user.id !== item.user_id) {
+        ctx.status = 400;
+        ctx.body = {result: "fail", message: '타인의 글은 삭제할 수 없습니다.'};
+        return;
+    }
 
     let { affectedRows } = await deleteComment(id);
 
