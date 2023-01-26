@@ -1,5 +1,19 @@
-const { create, show, deleteOne } = require('./query');
+const { create, show, deleteOne, findByPosts } = require('./query');
 const fs = require('fs')
+
+exports.searchPostsImage = async (ctx, next) => {
+    let id = ctx.params.id;
+
+    let item = findByPosts(id);
+
+    if (item.length < 1) {
+        ctx.body = { result: "fail" }
+        return;
+    }
+    ctx.response.set("content-disposition", `attachment; filename=${item.original_name}`);
+    ctx.statusCode = 200;
+    ctx.body = fs.createReadStream(item.file_path);
+}
 
 exports.upload = async (ctx, next) => {
     let file = ctx.request.file;

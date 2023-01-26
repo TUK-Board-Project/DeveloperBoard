@@ -39,6 +39,7 @@ router.del('/api/posts/:id',postsController.delete);//삭제
 
 router.post('/api/images', upload.single('file'), imageController.upload);
 router.get('/api/images/:id', imageController.download);
+router.get('/api/images/posts/:id', imageController.searchPostsImage);
 router.del('/api/images/:id', imageController.deleteById);
 
 router.post('/api/comments', commentController.saveComment);

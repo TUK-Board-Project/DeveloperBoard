@@ -11,6 +11,12 @@ exports.show = async (id) => {
     return (result.lenth < 0) ? null : result[0];
 }
 
+exports.findByPosts = async (posts_id) => {
+    const query = `SELECT * FROM image WHERE posts_id = ?`;
+    let result = await pool(query, [posts_id]);
+    return (result.lenth < 0) ? null : result[0];
+}
+
 exports.deleteOne = async (id) => {
     const query = `DELETE FROM image WHERE id = ?`;
     return await pool(query, [id]);
