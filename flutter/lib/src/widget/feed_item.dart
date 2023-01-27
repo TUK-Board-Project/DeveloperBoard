@@ -18,7 +18,7 @@ class FeedItem extends StatelessWidget {
       onTap: () async {
         final prefs = await SharedPreferences.getInstance();
         prefs.clear();
-        Navigator.push(
+        Navigator.pushReplacement(
             context, MaterialPageRoute(builder: (b) => FeedShow(feed)));
       },
       child: Container(
@@ -35,7 +35,7 @@ class FeedItem extends StatelessWidget {
                   Row(
                     children: [
                       Text(
-                        '($feed.title)',
+                        '${feed.title}',
                         style: TextStyle(
                             fontSize: 16, fontWeight: FontWeight.bold),
                       ),
@@ -43,7 +43,7 @@ class FeedItem extends StatelessWidget {
                         width: 10,
                       ),
                       Text(
-                        '($feed.contents)',
+                        '${feed.contents}',
                         style: TextStyle(fontSize: 12, color: Colors.grey),
                       ),
                     ],
@@ -52,7 +52,7 @@ class FeedItem extends StatelessWidget {
                     height: 5,
                   ),
                   Text(
-                    '($feed.id)',
+                    '${feed.createdAt}',
                   ),
                 ],
               ),

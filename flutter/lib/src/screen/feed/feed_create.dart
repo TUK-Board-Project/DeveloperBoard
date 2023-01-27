@@ -43,13 +43,8 @@ class _FeedCreateState extends State<FeedCreate> {
       if (widget.beforeFeed == null) {
         await feedController.feedCreate(
             1, titleController.text, contentController.text, "free");
-        Navigator.pushReplacement(context,
-            MaterialPageRoute(builder: (BuildContext context) => Home()));
-      } else {
         await feedController.feedEdit(
             widget.beforeFeed!.id!, contentController.text);
-        Navigator.pushReplacement(context,
-            MaterialPageRoute(builder: (BuildContext context) => const Home()));
       }
     }
   }
@@ -73,7 +68,15 @@ class _FeedCreateState extends State<FeedCreate> {
             ? const Text('피드 작성')
             : const Text('피드 수정'),
         actions: [
-          IconButton(onPressed: submit, icon: Icon(Icons.save)),
+          IconButton(
+              onPressed: () {
+                submit();
+                Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                        builder: (BuildContext context) => Home()));
+              },
+              icon: Icon(Icons.save)),
         ],
       ),
       body: Padding(

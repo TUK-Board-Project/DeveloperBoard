@@ -30,7 +30,8 @@ class _RegisterState extends State<Register> {
       String? token = await userController.register(name, email, password);
       if (token != null) {
         await prefs.setString('token', token);
-        Navigator.push(context, MaterialPageRoute(builder: (b) => Login()));
+        Navigator.pushReplacement(
+            context, MaterialPageRoute(builder: (b) => Login()));
       }
     }
   }

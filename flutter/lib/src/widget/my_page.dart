@@ -46,7 +46,7 @@ class MyPage extends StatelessWidget {
                         onPressed: () async {
                           final prefs = await SharedPreferences.getInstance();
                           prefs.clear();
-                          Navigator.push(context,
+                          Navigator.pushReplacement(context,
                               MaterialPageRoute(builder: (b) => Login()));
                         },
                         child: Text('로그아웃'),

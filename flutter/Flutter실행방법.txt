@@ -1,0 +1,3 @@
+flutter run --no-sound-null-safety
+
+해당 명령어를 flutter 디렉터리에서 실행
