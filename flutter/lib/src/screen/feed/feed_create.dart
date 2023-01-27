@@ -76,36 +76,38 @@ class _FeedCreateState extends State<FeedCreate> {
           IconButton(onPressed: submit, icon: Icon(Icons.save)),
         ],
       ),
-      body: SafeArea(
-        top: false,
-        child: Column(
-          children: [
-            CustomTextFormField(
-              funcontroller: titleController,
-              hint: "Title",
-              funValidator: validateTitle(),
-            ),
-            CustomTextFormArea(
-              funcontroller: contentController,
-              hint: "Content",
-              funValidator: validateContent(),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: Row(
-                children: [
-                  InkWell(
-                    onTap: null,
-                    child: ImageBox(child: const Icon(Icons.image)),
-                  ),
-                  SizedBox(
-                    width: 30,
-                  ),
-                  //previewImage(),
-                ],
+      body: Padding(
+        padding: const EdgeInsets.all(16.8),
+        child: Form(
+          child: ListView(
+            children: [
+              CustomTextFormField(
+                funcontroller: titleController,
+                hint: "Title",
+                funValidator: validateTitle(),
               ),
-            )
-          ],
+              CustomTextFormArea(
+                funcontroller: contentController,
+                hint: "Content",
+                funValidator: validateContent(),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: Row(
+                  children: [
+                    InkWell(
+                      onTap: null,
+                      child: ImageBox(child: const Icon(Icons.image)),
+                    ),
+                    SizedBox(
+                      width: 30,
+                    ),
+                    //previewImage(),
+                  ],
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );
